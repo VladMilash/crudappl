@@ -1,0 +1,30 @@
+CREATE TABLE writers
+(
+    id        INT AUTO_INCREMENT PRIMARY KEY,
+    firstName VARCHAR(50) NOT NULL,
+    lastName  VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Post
+(
+    id      INT AUTO_INCREMENT PRIMARY KEY,
+    content TEXT,
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    status  ENUM ('ACTIVE', 'UNDER_REVIEW', 'DELETED') NOT NULL
+);
+
+CREATE TABLE Label
+(
+    id   INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Post_Label
+(
+    post_id  INT,
+    label_id INT,
+    PRIMARY KEY (post_id, label_id),
+    FOREIGN KEY (post_id) REFERENCES Post (id) ON DELETE CASCADE,
+    FOREIGN KEY (label_id) REFERENCES Label (id) ON DELETE CASCADE
+);
