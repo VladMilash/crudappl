@@ -15,4 +15,5 @@
             <dropForeignKeyConstraint baseTableName="Post_Label" constraintName="fk_post_label_post"/>
         </rollback>
     </changeSet>
+
 </databaseChangeLog>

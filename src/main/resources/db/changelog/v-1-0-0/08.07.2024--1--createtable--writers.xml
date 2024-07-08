@@ -20,4 +20,5 @@
             <dropTable tableName="writers"/>
         </rollback>
     </changeSet>
+
 </databaseChangeLog>

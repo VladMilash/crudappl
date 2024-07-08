@@ -17,4 +17,5 @@
             <dropTable tableName="Post_Label"/>
         </rollback>
     </changeSet>
+
 </databaseChangeLog>

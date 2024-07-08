@@ -39,11 +39,14 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.28.0</version>
                 <configuration>
-                    <changeLogFile>src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>
+                    <changeLogFile>
+                        src/main/resources/db/changelog/db.changelog-master.xml
+                    </changeLogFile>
                     <url>jdbc:mysql://localhost:3306/crudappl</url>
                     <username>root</username>
                     <password>|@8hq6^Ey</password>
                     <driver>com.mysql.cj.jdbc.Driver</driver>
+                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                 </configuration>
             </plugin>
         </plugins>

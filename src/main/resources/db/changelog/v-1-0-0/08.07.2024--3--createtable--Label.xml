@@ -17,4 +17,5 @@
             <dropTable tableName="Label"/>
         </rollback>
     </changeSet>
+
 </databaseChangeLog>

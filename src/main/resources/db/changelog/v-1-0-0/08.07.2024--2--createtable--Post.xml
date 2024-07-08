@@ -20,4 +20,5 @@
             <dropTable tableName="Post"/>
         </rollback>
     </changeSet>
+
 </databaseChangeLog>
