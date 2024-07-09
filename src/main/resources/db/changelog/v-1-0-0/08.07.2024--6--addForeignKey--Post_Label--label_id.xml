@@ -1,19 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-
     <changeSet id="6" author="mvo">
-        <addForeignKeyConstraint baseTableName="Post_Label"
-                                 baseColumnNames="label_id"
-                                 constraintName="fk_post_label_label"
-                                 referencedTableName="Label"
-                                 referencedColumnNames="id"
-                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="Post_Label" baseColumnNames="label_id" constraintName="fk_post_label_label" referencedTableName="Label" referencedColumnNames="id" onDelete="CASCADE"/>
         <rollback>
             <dropForeignKeyConstraint baseTableName="Post_Label" constraintName="fk_post_label_label"/>
         </rollback>
     </changeSet>
-
 </databaseChangeLog>

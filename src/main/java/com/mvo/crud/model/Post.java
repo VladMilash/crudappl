@@ -9,13 +9,15 @@ public class Post {
     private LocalDate created;
     private LocalDate updated;
     private List<Lable> labels;
+    private PostStatus postStatus;
 
-    public Post(int id, String content, LocalDate created, LocalDate updated, List<Lable> labels) {
+    public Post(int id, String content, LocalDate created, LocalDate updated, List<Lable> labels, PostStatus postStatus) {
         this.id = id;
         this.content = content;
         this.created = created;
         this.updated = updated;
         this.labels = labels;
+        this.postStatus = postStatus;
     }
 
     public int getId() {
@@ -58,6 +60,14 @@ public class Post {
         this.labels = labels;
     }
 
+    public PostStatus getPostStatus() {
+        return postStatus;
+    }
+
+    public void setPostStatus(PostStatus postStatus) {
+        this.postStatus = postStatus;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -66,6 +76,7 @@ public class Post {
                 ", created=" + created +
                 ", updated=" + updated +
                 ", labels=" + labels +
+                ", postStatus=" + postStatus +
                 '}';
     }
 }

@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-
     <include file="/db/changelog/v-1-0-0/08.07.2024--1--createtable--writers.xml"/>
     <include file="/db/changelog/v-1-0-0/08.07.2024--2--createtable--Post.xml"/>
     <include file="/db/changelog/v-1-0-0/08.07.2024--3--createtable--Label.xml"/>
     <include file="/db/changelog/v-1-0-0/08.07.2024--4--createtable--Post_Label.xml"/>
     <include file="/db/changelog/v-1-0-0/08.07.2024--5--addForeignKey--Post_Label--post_id.xml"/>
     <include file="/db/changelog/v-1-0-0/08.07.2024--6--addForeignKey--Post_Label--label_id.xml"/>
-
 </databaseChangeLog>
