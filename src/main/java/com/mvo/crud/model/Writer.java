@@ -8,11 +8,28 @@ public class Writer {
     private String lastName;
     private List<Post> posts;
 
+    public Writer(String firstName, String lastName, List<Post> posts) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.posts = posts;
+    }
+
     public Writer(int id, String firstName, String lastName, List<Post> posts) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.posts = posts;
+    }
+
+    public Writer(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Writer(int id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public int getId() {

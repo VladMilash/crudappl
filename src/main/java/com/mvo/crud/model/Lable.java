@@ -4,8 +4,7 @@ public class Lable {
     private int id;
     private String name;
 
-    public Lable(int id, String name) {
-        this.id = id;
+    public Lable(String name) {
         this.name = name;
     }
 

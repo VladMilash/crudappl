@@ -11,8 +11,7 @@ public class Post {
     private List<Lable> labels;
     private PostStatus postStatus;
 
-    public Post(int id, String content, LocalDate created, LocalDate updated, List<Lable> labels, PostStatus postStatus) {
-        this.id = id;
+    public Post(String content, LocalDate created, LocalDate updated, List<Lable> labels, PostStatus postStatus) {
         this.content = content;
         this.created = created;
         this.updated = updated;
