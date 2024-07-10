@@ -1,5 +1,8 @@
 package com.mvo.crud.repository.dbutil;
 
+import com.mvo.crud.exception.CrudException;
+import com.mvo.crud.exception.ExistCrudException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -11,7 +14,7 @@ public class SqlHelper {
             PreparedStatement pstm = connection.prepareStatement(sql);
             return executor.execute(pstm);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new CrudException(e);
         }
     }
 
@@ -20,7 +23,10 @@ public class SqlHelper {
             PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             return executor.execute(pstm);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            if (e.getSQLState().equals("23505")) {
+                throw new ExistCrudException();
+            }
+            throw new CrudException(e);
         }
     }
 

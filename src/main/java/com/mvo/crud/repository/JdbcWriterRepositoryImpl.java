@@ -1,5 +1,7 @@
 package com.mvo.crud.repository;
 
+import com.mvo.crud.exception.NotExistCrudException;
+import com.mvo.crud.mapper.WriterMapper;
 import com.mvo.crud.model.Post;
 import com.mvo.crud.model.Writer;
 import com.mvo.crud.repository.dbutil.SqlHelper;
@@ -11,6 +13,7 @@ import java.util.List;
 public class JdbcWriterRepositoryImpl implements WriterRepository {
 
     SqlHelper sqlHelper = new SqlHelper();
+    WriterMapper writerMapper = new WriterMapper();
 
     @Override
     public Writer findById(Integer id) {
@@ -18,15 +21,9 @@ public class JdbcWriterRepositoryImpl implements WriterRepository {
             pstm.setInt(1, id);
             try (ResultSet rs = pstm.executeQuery()) {
                 if (!rs.next()) {
-                    throw new RuntimeException("Writer with id " + id + " not found");
+                    throw new NotExistCrudException(id);
                 }
-                int writerId = rs.getInt("id");
-                String firstName = rs.getString("firstName");
-                String lastName = rs.getString("lastName");
-
-                List<Post> posts = new ArrayList<>();
-
-                return new Writer(writerId, firstName, lastName, posts);
+                return writerMapper.map(rs);
             }
         });
     }
@@ -37,14 +34,7 @@ public class JdbcWriterRepositoryImpl implements WriterRepository {
             List<Writer> writers = new ArrayList<>();
             try (ResultSet rs = pstm.executeQuery()) {
                 while (rs.next()) {
-                    int writerId = rs.getInt("id");
-                    String firstName = rs.getString("firstName");
-                    String lastName = rs.getString("lastName");
-
-                    List<Post> posts = new ArrayList<>();
-
-                    Writer writer = new Writer(writerId, firstName, lastName, posts);
-                    writers.add(writer);
+                    writers.add(writerMapper.map(rs));
                 }
             }
             return writers;
@@ -83,7 +73,7 @@ public class JdbcWriterRepositoryImpl implements WriterRepository {
             pstm.setInt(1, id);
             int rowsAffected = pstm.executeUpdate();
             if (rowsAffected == 0) {
-                throw new RuntimeException("No writer found with ID: " + id);
+                throw new NotExistCrudException(id);
             }
             return null;
         });
