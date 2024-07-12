@@ -1,6 +1,7 @@
 package com.mvo.crud.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Writer {
     private int id;
@@ -62,6 +63,19 @@ public class Writer {
 
     public void setPosts(List<Post> posts) {
         this.posts = posts;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Writer writer = (Writer) o;
+        return id == writer.id && Objects.equals(firstName, writer.firstName) && Objects.equals(lastName, writer.lastName) && Objects.equals(posts, writer.posts);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, posts);
     }
 
     @Override

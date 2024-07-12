@@ -2,7 +2,6 @@ package com.mvo.crud.repository;
 
 import com.mvo.crud.exception.NotExistCrudException;
 import com.mvo.crud.mapper.WriterMapper;
-import com.mvo.crud.model.Post;
 import com.mvo.crud.model.Writer;
 import com.mvo.crud.repository.dbutil.SqlHelper;
 
@@ -42,7 +41,7 @@ public class JdbcWriterRepositoryImpl implements WriterRepository {
     }
 
     @Override
-    public void save(Writer writer) {
+    public Writer save(Writer writer) {
         sqlHelper.executeWithGeneratedKeys("INSERT INTO writers (firstName, lastName) VALUES (?, ?)", pstm -> {
             pstm.setString(1, writer.getFirstName());
             pstm.setString(2, writer.getLastName());
@@ -54,10 +53,11 @@ public class JdbcWriterRepositoryImpl implements WriterRepository {
             }
             return null;
         });
+        return writer;
     }
 
     @Override
-    public void update(Writer writer) {
+    public Writer update(Writer writer) {
         sqlHelper.execute("UPDATE writers SET firstName = ?, lastName = ? WHERE id = ?", pstm -> {
             pstm.setString(1, writer.getFirstName());
             pstm.setString(2, writer.getLastName());
@@ -65,6 +65,7 @@ public class JdbcWriterRepositoryImpl implements WriterRepository {
             pstm.executeUpdate();
             return null;
         });
+        return writer;
     }
 
     @Override
