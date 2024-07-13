@@ -33,11 +33,7 @@ public class WriterServiceImpl implements WriterService {
 
     @Override
     public List<Writer> getAllWriters() {
-        try {
-            return writerRepository.findAll();
-        } catch (CrudException e) {
-            throw new CrudException(e);
-        }
+        return writerRepository.findAll();
     }
 
     @Override

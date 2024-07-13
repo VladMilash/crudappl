@@ -42,7 +42,7 @@ public class JdbcWriterRepositoryImpl implements WriterRepository {
 
     @Override
     public Writer save(Writer writer) {
-        sqlHelper.executeWithGeneratedKeys("INSERT INTO writers (firstName, lastName) VALUES (?, ?)", pstm -> {
+        return sqlHelper.executeWithGeneratedKeys("INSERT INTO writers (firstName, lastName) VALUES (?, ?)", pstm -> {
             pstm.setString(1, writer.getFirstName());
             pstm.setString(2, writer.getLastName());
             pstm.executeUpdate();
@@ -51,21 +51,20 @@ public class JdbcWriterRepositoryImpl implements WriterRepository {
                     writer.setId(generatedKeys.getInt(1));
                 }
             }
-            return null;
+            return writer;
         });
-        return writer;
     }
 
     @Override
     public Writer update(Writer writer) {
-        sqlHelper.execute("UPDATE writers SET firstName = ?, lastName = ? WHERE id = ?", pstm -> {
+        return sqlHelper.execute("UPDATE writers SET firstName = ?, lastName = ? WHERE id = ?", pstm -> {
             pstm.setString(1, writer.getFirstName());
             pstm.setString(2, writer.getLastName());
             pstm.setInt(3, writer.getId());
             pstm.executeUpdate();
-            return null;
+            return writer;
         });
-        return writer;
+
     }
 
     @Override

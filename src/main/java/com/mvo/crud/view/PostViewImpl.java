@@ -1,17 +1,18 @@
 package com.mvo.crud.view;
 
-import com.mvo.crud.controller.WriterController;
+import com.mvo.crud.controller.PostController;
+import com.mvo.crud.controller.PostControllerImp;
 
 import java.util.Scanner;
 
-public class WriterViewImpl implements WriterView {
-    private final WriterController writerController;
+public class PostViewImpl implements PostView {
+
+    private final PostController postControllerImp;
     private final Scanner scanner;
     private String choice = "yes";
 
-
-    public WriterViewImpl(WriterController writerController) {
-        this.writerController = writerController;
+    public PostViewImpl(PostController postControllerImp) {
+        this.postControllerImp = postControllerImp;
         this.scanner = new Scanner(System.in);
     }
 
@@ -20,21 +21,21 @@ public class WriterViewImpl implements WriterView {
         try {
             do {
                 System.out.println("-----Hello!-----");
-                System.out.println("-----WritersMenu-----");
-                System.out.println("1. Create Writer");
-                System.out.println("2. Get Writer by ID");
-                System.out.println("3. Get all Writers");
+                System.out.println("-----PostsMenu-----");
+                System.out.println("1. Create Post");
+                System.out.println("2. Get Post by ID");
+                System.out.println("3. Get all Posts");
                 System.out.println("4. Exit");
                 System.out.print("Select an option: ");
                 int choiceNumber = scanner.nextInt();
                 scanner.nextLine();
 
                 switch (choiceNumber) {
-                    case 1 -> writerController.createWriter();
+                    case 1 -> postControllerImp.createPost();
 
-                    case 2 -> writerController.getWriterById();
+                    case 2 -> postControllerImp.getPostById();
 
-                    case 3 -> writerController.getAllWriters();
+                    case 3 -> postControllerImp.getAllPost();
 
                     case 4 -> {
                         System.out.println("Exiting...");
@@ -56,8 +57,9 @@ public class WriterViewImpl implements WriterView {
             System.out.println("The program is completed, have a nice day");
 
         } finally {
-            writerController.closeScanner();
+            postControllerImp.closeScanner();
             scanner.close();
         }
     }
+
 }

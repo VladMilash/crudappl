@@ -13,6 +13,7 @@ public class WriterControllerImpl implements WriterController {
     Scanner scanner;
 
     public WriterControllerImpl(WriterService writerService) {
+        this.writerService = writerService;
         this.scanner = new Scanner(System.in);
     }
 
@@ -60,17 +61,19 @@ public class WriterControllerImpl implements WriterController {
 
     @Override
     public void updateWriter() {
+        Integer id = null;
         try {
             System.out.println("Enter writer ID:");
-            Integer id = scanner.nextInt();
+            id = scanner.nextInt();
             scanner.nextLine();
             System.out.println("Enter first name:");
             String firstName = scanner.nextLine();
             System.out.println("Enter last name:");
             String lastName = scanner.nextLine();
             writerService.updateWriter(id, firstName, lastName);
+            System.out.println("Writer has been updated.");
         } catch (NotExistCrudException e) {
-            System.out.println("Writer with ID not found");
+            System.out.println("Writer with " + id + " not found");
         } catch (CrudException e) {
             System.out.println("Updating error: " + e.getMessage());
         }
@@ -78,14 +81,15 @@ public class WriterControllerImpl implements WriterController {
 
     @Override
     public void deleteWriterById() {
+        Integer id = null;
         try {
             System.out.println("Enter writer ID:");
-            Integer id = scanner.nextInt();
+            id = scanner.nextInt();
             scanner.nextLine();
             writerService.deleteWriterById(id);
             System.out.println("Writer with id:  " + id + "has been deleted");
         } catch (NotExistCrudException e) {
-            System.out.println("Writer with ID not found");
+            System.out.println("Writer with " + id + " not found");
         } catch (CrudException e) {
             System.out.println("Deleting error: " + e.getMessage());
         }
@@ -93,8 +97,6 @@ public class WriterControllerImpl implements WriterController {
 
     @Override
     public void closeScanner() {
-        if (scanner != null) {
-            scanner.close();
-        }
+        scanner.close();
     }
 }

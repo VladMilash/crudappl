@@ -2,6 +2,7 @@ package com.mvo.crud.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class Post {
     private int id;
@@ -17,6 +18,21 @@ public class Post {
         this.updated = updated;
         this.labels = labels;
         this.postStatus = postStatus;
+    }
+
+    public Post(int id, String content, LocalDate created, LocalDate updated, List<Lable> labels, PostStatus postStatus) {
+        this.id = id;
+        this.content = content;
+        this.created = created;
+        this.updated = updated;
+        this.labels = labels;
+        this.postStatus = postStatus;
+    }
+
+    public Post(PostStatus postStatus, String content) {
+        this.postStatus = postStatus;
+        this.content = content;
+
     }
 
     public int getId() {
@@ -77,5 +93,18 @@ public class Post {
                 ", labels=" + labels +
                 ", postStatus=" + postStatus +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return id == post.id && Objects.equals(content, post.content) && Objects.equals(created, post.created) && Objects.equals(updated, post.updated) && Objects.equals(labels, post.labels) && postStatus == post.postStatus;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, content, created, updated, labels, postStatus);
     }
 }
