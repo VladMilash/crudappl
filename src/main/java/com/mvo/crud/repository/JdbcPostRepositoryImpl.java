@@ -12,8 +12,8 @@ import java.util.List;
 
 public class JdbcPostRepositoryImpl implements PostRepository {
 
-    SqlHelper sqlHelper = new SqlHelper();
-    PostMapper postMapper = new PostMapper();
+    private final SqlHelper sqlHelper = new SqlHelper();
+    private final PostMapper postMapper = new PostMapper();
 
     @Override
     public Post findById(Integer id) {
@@ -35,10 +35,9 @@ public class JdbcPostRepositoryImpl implements PostRepository {
             try (ResultSet rs = pstm.executeQuery()) {
                 while (rs.next()) {
                     posts.add(postMapper.map(rs));
-                    return posts;
                 }
+                return posts;
             }
-            return posts;
         });
     }
 

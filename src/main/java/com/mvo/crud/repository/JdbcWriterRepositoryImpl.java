@@ -11,8 +11,8 @@ import java.util.List;
 
 public class JdbcWriterRepositoryImpl implements WriterRepository {
 
-    SqlHelper sqlHelper = new SqlHelper();
-    WriterMapper writerMapper = new WriterMapper();
+    private final SqlHelper sqlHelper = new SqlHelper();
+    private final WriterMapper writerMapper = new WriterMapper();
 
     @Override
     public Writer findById(Integer id) {

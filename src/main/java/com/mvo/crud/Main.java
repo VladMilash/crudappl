@@ -6,6 +6,7 @@ import com.mvo.crud.controller.WriterController;
 import com.mvo.crud.controller.WriterControllerImpl;
 import com.mvo.crud.repository.JdbcPostRepositoryImpl;
 import com.mvo.crud.repository.JdbcWriterRepositoryImpl;
+import com.mvo.crud.repository.PostRepository;
 import com.mvo.crud.service.PostService;
 import com.mvo.crud.service.PostServiceImpl;
 import com.mvo.crud.service.WriterService;
@@ -24,8 +25,8 @@ public class Main {
 //
 //        writerView.runMenu();
 
-        JdbcPostRepositoryImpl jdbcPostRepository = new JdbcPostRepositoryImpl();
-        PostService postService = new PostServiceImpl(jdbcPostRepository);
+        PostRepository postRepository = new JdbcPostRepositoryImpl();
+        PostService postService = new PostServiceImpl(postRepository);
         PostController postController = new PostControllerImp(postService);
         PostView postView = new PostViewImpl(postController);
 
