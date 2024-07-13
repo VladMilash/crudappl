@@ -20,7 +20,7 @@ public class WriterViewImpl implements WriterView {
         try {
             do {
                 System.out.println("-----Hello!-----");
-                System.out.println("-----WritersMenu-----");
+                System.out.println("-----Writers Menu-----");
                 System.out.println("1. Create Writer");
                 System.out.println("2. Get Writer by ID");
                 System.out.println("3. Get all Writers");

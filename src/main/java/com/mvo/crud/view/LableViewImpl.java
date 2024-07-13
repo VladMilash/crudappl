@@ -1,18 +1,16 @@
 package com.mvo.crud.view;
 
-import com.mvo.crud.controller.PostController;
-import com.mvo.crud.controller.PostControllerImp;
+import com.mvo.crud.controller.LableController;
 
 import java.util.Scanner;
 
-public class PostViewImpl implements PostView {
-
-    private final PostController postControllerImp;
+public class LableViewImpl implements LableView {
+    private final LableController lableController;
     private final Scanner scanner;
     private String choice = "yes";
 
-    public PostViewImpl(PostController postControllerImp) {
-        this.postControllerImp = postControllerImp;
+    public LableViewImpl(LableController lableController) {
+        this.lableController = lableController;
         this.scanner = new Scanner(System.in);
     }
 
@@ -21,21 +19,21 @@ public class PostViewImpl implements PostView {
         try {
             do {
                 System.out.println("-----Hello!-----");
-                System.out.println("-----Posts Menu-----");
-                System.out.println("1. Create Post");
-                System.out.println("2. Get Post by ID");
-                System.out.println("3. Get all Posts");
+                System.out.println("-----Lables Menu-----");
+                System.out.println("1. Create Lable");
+                System.out.println("2. Get Lable by ID");
+                System.out.println("3. Get all Lables");
                 System.out.println("4. Exit");
                 System.out.print("Select an option: ");
                 int choiceNumber = scanner.nextInt();
                 scanner.nextLine();
 
                 switch (choiceNumber) {
-                    case 1 -> postControllerImp.createPost();
+                    case 1 -> lableController.createLable();
 
-                    case 2 -> postControllerImp.getPostById();
+                    case 2 -> lableController.getLableById();
 
-                    case 3 -> postControllerImp.getAllPosts();
+                    case 3 -> lableController.getAllLables();
 
                     case 4 -> {
                         System.out.println("Exiting...");
@@ -57,9 +55,8 @@ public class PostViewImpl implements PostView {
             System.out.println("The program is completed, have a nice day");
 
         } finally {
-            postControllerImp.closeScanner();
+            lableController.closeScanner();
             scanner.close();
         }
     }
-
 }

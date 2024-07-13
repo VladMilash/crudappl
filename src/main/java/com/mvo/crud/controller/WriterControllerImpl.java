@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class WriterControllerImpl implements WriterController {
-    WriterService writerService;
-    Scanner scanner;
+    private final WriterService writerService;
+    private final Scanner scanner;
 
     public WriterControllerImpl(WriterService writerService) {
         this.writerService = writerService;
@@ -33,14 +33,15 @@ public class WriterControllerImpl implements WriterController {
 
     @Override
     public void getWriterById() {
+        Integer id = null;
         try {
             System.out.println("Enter writer ID:");
-            Integer id = scanner.nextInt();
+            id = scanner.nextInt();
             scanner.nextLine();
             Writer writer = writerService.getWriterById(id);
             System.out.println("Writer: " + writer);
         } catch (NotExistCrudException e) {
-            System.out.println("Writer with ID not found");
+            System.out.println("Writer with " + id + " not found");
         } catch (CrudException e) {
             System.out.println("Getting writer error: " + e.getMessage());
         }

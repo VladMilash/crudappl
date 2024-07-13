@@ -1,20 +1,9 @@
 package com.mvo.crud;
 
-import com.mvo.crud.controller.PostController;
-import com.mvo.crud.controller.PostControllerImp;
-import com.mvo.crud.controller.WriterController;
-import com.mvo.crud.controller.WriterControllerImpl;
-import com.mvo.crud.repository.JdbcPostRepositoryImpl;
-import com.mvo.crud.repository.JdbcWriterRepositoryImpl;
-import com.mvo.crud.repository.PostRepository;
-import com.mvo.crud.service.PostService;
-import com.mvo.crud.service.PostServiceImpl;
-import com.mvo.crud.service.WriterService;
-import com.mvo.crud.service.WriterServiceImpl;
-import com.mvo.crud.view.PostView;
-import com.mvo.crud.view.PostViewImpl;
-import com.mvo.crud.view.WriterView;
-import com.mvo.crud.view.WriterViewImpl;
+import com.mvo.crud.controller.*;
+import com.mvo.crud.repository.*;
+import com.mvo.crud.service.*;
+import com.mvo.crud.view.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,13 +13,20 @@ public class Main {
 //        WriterView writerView = new WriterViewImpl(writerController);
 //
 //        writerView.runMenu();
+//
+//        PostRepository postRepository = new JdbcPostRepositoryImpl();
+//        PostService postService = new PostServiceImpl(postRepository);
+//        PostController postController = new PostControllerImp(postService);
+//        PostView postView = new PostViewImpl(postController);
+//
+//        postView.runMenu();
 
-        PostRepository postRepository = new JdbcPostRepositoryImpl();
-        PostService postService = new PostServiceImpl(postRepository);
-        PostController postController = new PostControllerImp(postService);
-        PostView postView = new PostViewImpl(postController);
+        LableRepository lableRepository = new JdbcLableRepositoryImpl();
+        LableService lableService = new LableServiceImpl(lableRepository);
+        LableController lableController = new LableControllerImp(lableService);
+        LableView lableView = new LableViewImpl(lableController);
 
-        postView.runMenu();
+        lableView.runMenu();
 
     }
 }

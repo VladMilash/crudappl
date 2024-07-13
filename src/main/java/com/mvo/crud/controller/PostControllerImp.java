@@ -48,7 +48,7 @@ public class PostControllerImp implements PostController {
     }
 
     @Override
-    public void getAllPost() {
+    public void getAllPosts() {
         try {
             List<Post> posts = postService.getAllPosts();
             for (Post post : posts) {

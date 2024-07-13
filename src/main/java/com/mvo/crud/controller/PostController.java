@@ -5,7 +5,7 @@ public interface PostController {
 
     void getPostById();
 
-    void getAllPost();
+    void getAllPosts();
 
     void updatePost();
 
