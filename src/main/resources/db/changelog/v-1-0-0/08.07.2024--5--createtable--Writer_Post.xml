@@ -1,0 +1,22 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="7" author="mvo">
+        <createTable tableName="Writer_Post">
+            <column name="writer_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="post_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="Writer_Post" baseColumnNames="writer_id" constraintName="fk_writer_post_writer" referencedTableName="writers" referencedColumnNames="id" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="Writer_Post" baseColumnNames="post_id" constraintName="fk_writer_post_post" referencedTableName="Post" referencedColumnNames="id" onDelete="CASCADE"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="Writer_Post" constraintName="fk_writer_post_writer"/>
+            <dropForeignKeyConstraint baseTableName="Writer_Post" constraintName="fk_writer_post_post"/>
+            <dropTable tableName="Writer_Post"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

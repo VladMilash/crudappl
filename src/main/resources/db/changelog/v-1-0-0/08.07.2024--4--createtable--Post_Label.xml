@@ -11,7 +11,11 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+        <addForeignKeyConstraint baseTableName="Post_Label" baseColumnNames="post_id" constraintName="fk_post_label_post" referencedTableName="Post" referencedColumnNames="id" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="Post_Label" baseColumnNames="label_id" constraintName="fk_post_label_label" referencedTableName="Label" referencedColumnNames="id" onDelete="CASCADE"/>
         <rollback>
+            <dropForeignKeyConstraint baseTableName="Post_Label" constraintName="fk_post_label_post"/>
+            <dropForeignKeyConstraint baseTableName="Post_Label" constraintName="fk_post_label_label"/>
             <dropTable tableName="Post_Label"/>
         </rollback>
     </changeSet>
