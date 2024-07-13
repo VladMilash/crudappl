@@ -18,17 +18,12 @@ public class WriterServiceImpl implements WriterService {
     @Override
     public Writer createWriter(String firstName, String lastName) {
         Writer writer = new Writer(firstName, lastName);
-        writerRepository.save(writer);
-        return writer;
+        return writerRepository.save(writer);
     }
 
     @Override
     public Writer getWriterById(Integer id) {
-        Writer writer = writerRepository.findById(id);
-        if (writer == null) {
-            throw new NotExistCrudException(id);
-        }
-        return writer;
+        return writerRepository.findById(id);
     }
 
     @Override
@@ -41,8 +36,7 @@ public class WriterServiceImpl implements WriterService {
         Writer existingWriter = getWriterById(id);
         existingWriter.setFirstName(firstName);
         existingWriter.setLastName(lastName);
-        writerRepository.update(existingWriter);
-        return existingWriter;
+        return writerRepository.update(existingWriter);
     }
 
     @Override

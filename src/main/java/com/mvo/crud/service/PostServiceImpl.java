@@ -19,17 +19,12 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post createPost(PostStatus postStatus, String content) {
         Post post = new Post(content, LocalDate.now(), LocalDate.now(), null, postStatus);
-        postRepository.save(post);
-        return post;
+        return postRepository.save(post);
     }
 
     @Override
     public Post getPostById(Integer id) {
-        Post post = postRepository.findById(id);
-        if (post == null) {
-            throw new NotExistCrudException(id);
-        }
-        return post;
+        return postRepository.findById(id);
     }
 
     @Override
@@ -43,8 +38,7 @@ public class PostServiceImpl implements PostService {
         updatedPost.setPostStatus(postStatus);
         updatedPost.setContent(content);
         updatedPost.setUpdated(LocalDate.now());
-        postRepository.update(updatedPost);
-        return updatedPost;
+        return postRepository.update(updatedPost);
     }
 
     @Override
