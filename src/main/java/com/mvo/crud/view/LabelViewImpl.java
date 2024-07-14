@@ -1,16 +1,16 @@
 package com.mvo.crud.view;
 
-import com.mvo.crud.controller.LableController;
+import com.mvo.crud.controller.LabelController;
 
 import java.util.Scanner;
 
-public class LableViewImpl implements LableView {
-    private final LableController lableController;
+public class LabelViewImpl implements LabelView {
+    private final LabelController labelController;
     private final Scanner scanner;
     private String choice = "yes";
 
-    public LableViewImpl(LableController lableController) {
-        this.lableController = lableController;
+    public LabelViewImpl(LabelController labelController) {
+        this.labelController = labelController;
         this.scanner = new Scanner(System.in);
     }
 
@@ -19,21 +19,21 @@ public class LableViewImpl implements LableView {
         try {
             do {
                 System.out.println("-----Hello!-----");
-                System.out.println("-----Lables Menu-----");
-                System.out.println("1. Create Lable");
-                System.out.println("2. Get Lable by ID");
-                System.out.println("3. Get all Lables");
+                System.out.println("-----Label Menu-----");
+                System.out.println("1. Create Label");
+                System.out.println("2. Get Label by ID");
+                System.out.println("3. Get all Label");
                 System.out.println("4. Exit");
                 System.out.print("Select an option: ");
                 int choiceNumber = scanner.nextInt();
                 scanner.nextLine();
 
                 switch (choiceNumber) {
-                    case 1 -> lableController.createLable();
+                    case 1 -> labelController.createLable();
 
-                    case 2 -> lableController.getLableById();
+                    case 2 -> labelController.getLableById();
 
-                    case 3 -> lableController.getAllLables();
+                    case 3 -> labelController.getAllLables();
 
                     case 4 -> {
                         System.out.println("Exiting...");
@@ -55,7 +55,7 @@ public class LableViewImpl implements LableView {
             System.out.println("The program is completed, have a nice day");
 
         } finally {
-            lableController.closeScanner();
+            labelController.closeScanner();
             scanner.close();
         }
     }

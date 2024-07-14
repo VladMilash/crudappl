@@ -2,23 +2,21 @@ package com.mvo.crud.repository;
 
 import com.mvo.crud.exception.NotExistCrudException;
 import com.mvo.crud.mapper.LableMapper;
-import com.mvo.crud.mapper.Mapper;
-import com.mvo.crud.model.Lable;
-import com.mvo.crud.model.Post;
+import com.mvo.crud.model.Label;
 import com.mvo.crud.repository.dbutil.SqlHelper;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JdbcLableRepositoryImpl implements LableRepository {
+public class JdbcLabelRepositoryImpl implements LabelRepository {
 
     private final SqlHelper sqlHelper = new SqlHelper();
     private final LableMapper lableMapper = new LableMapper();
 
     @Override
-    public Lable findById(Integer id) {
-        return sqlHelper.execute("SELECT * FROM lable WHERE id = ?", pstm -> {
+    public Label findById(Integer id) {
+        return sqlHelper.execute("SELECT * FROM label WHERE id = ?", pstm -> {
             pstm.setInt(1, id);
             try (ResultSet rs = pstm.executeQuery()) {
                 if (!rs.next()) {
@@ -30,45 +28,45 @@ public class JdbcLableRepositoryImpl implements LableRepository {
     }
 
     @Override
-    public List<Lable> findAll() {
-        return sqlHelper.execute("SELECT * FROM lable", pstm -> {
-            List<Lable> lables = new ArrayList<>();
+    public List<Label> findAll() {
+        return sqlHelper.execute("SELECT * FROM label", pstm -> {
+            List<Label> labels = new ArrayList<>();
             try (ResultSet rs = pstm.executeQuery()) {
                 while (rs.next()) {
-                    lables.add(lableMapper.map(rs));
+                    labels.add(lableMapper.map(rs));
                 }
-                return lables;
+                return labels;
             }
         });
     }
 
     @Override
-    public Lable save(Lable lable) {
-        return sqlHelper.executeWithGeneratedKeys("INSERT INTO lable (name) VALUES (?)", pstm -> {
-            pstm.setString(1, lable.getName());
+    public Label save(Label label) {
+        return sqlHelper.executeWithGeneratedKeys("INSERT INTO label (name) VALUES (?)", pstm -> {
+            pstm.setString(1, label.getName());
             pstm.executeUpdate();
             try (ResultSet generatedKeys = pstm.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-                    lable.setId(generatedKeys.getInt(1));
+                    label.setId(generatedKeys.getInt(1));
                 }
             }
-            return lable;
+            return label;
         });
     }
 
     @Override
-    public Lable update(Lable lable) {
-        return sqlHelper.execute("UPDATE lable SET name = ? WHERE id = ?", pstm -> {
-            pstm.setString(1, lable.getName());
-            pstm.setInt(2, lable.getId());
+    public Label update(Label label) {
+        return sqlHelper.execute("UPDATE label SET name = ? WHERE id = ?", pstm -> {
+            pstm.setString(1, label.getName());
+            pstm.setInt(2, label.getId());
             pstm.executeUpdate();
-            return lable;
+            return label;
         });
     }
 
     @Override
     public void deleteById(Integer id) {
-        sqlHelper.execute("DELETE FROM lable WHERE id = ?", pstm -> {
+        sqlHelper.execute("DELETE FROM label WHERE id = ?", pstm -> {
             pstm.setInt(1, id);
             int rowsAffected = pstm.executeUpdate();
             if (rowsAffected == 0) {

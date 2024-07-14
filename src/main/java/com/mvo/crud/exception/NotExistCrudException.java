@@ -5,7 +5,7 @@ public class NotExistCrudException extends CrudException {
         super("Entity with id " + id + " not found");
     }
 
-    public NotExistCrudException(int writerId, int postId) {
-        super("No writer or post found with: " + " writer ID: " + writerId + " post ID " + postId);
+    public NotExistCrudException(int firstEntityId, int secondEntityId) {
+        super("No first entity or second entity not found with: " + " first entity Id,: " + firstEntityId + " post ID " + secondEntityId);
     }
 }

@@ -1,44 +1,43 @@
 package com.mvo.crud.service;
 
-import com.mvo.crud.exception.NotExistCrudException;
-import com.mvo.crud.model.Lable;
-import com.mvo.crud.repository.LableRepository;
+import com.mvo.crud.model.Label;
+import com.mvo.crud.repository.LabelRepository;
 
 import java.util.List;
 
 public class LableServiceImpl implements LableService {
 
-    private final LableRepository lableRepository;
+    private final LabelRepository labelRepository;
 
-    public LableServiceImpl(LableRepository lableRepository) {
-        this.lableRepository = lableRepository;
+    public LableServiceImpl(LabelRepository labelRepository) {
+        this.labelRepository = labelRepository;
     }
 
     @Override
-    public Lable createLable(String name) {
-        Lable lable = new Lable(name);
-        return lableRepository.save(lable);
+    public Label createLable(String name) {
+        Label label = new Label(name);
+        return labelRepository.save(label);
     }
 
     @Override
-    public Lable getLableById(Integer id) {
-        return lableRepository.findById(id);
+    public Label getLableById(Integer id) {
+        return labelRepository.findById(id);
     }
 
     @Override
-    public List<Lable> getAllLables() {
-        return lableRepository.findAll();
+    public List<Label> getAllLables() {
+        return labelRepository.findAll();
     }
 
     @Override
-    public Lable updateLable(Integer id, String name) {
-        Lable updatedLable = lableRepository.findById(id);
-        updatedLable.setName(name);
-        return lableRepository.update(updatedLable);
+    public Label updateLable(Integer id, String name) {
+        Label updatedLabel = labelRepository.findById(id);
+        updatedLabel.setName(name);
+        return labelRepository.update(updatedLabel);
     }
 
     @Override
     public void deleteLableById(Integer id) {
-        lableRepository.deleteById(id);
+        labelRepository.deleteById(id);
     }
 }

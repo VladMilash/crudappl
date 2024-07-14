@@ -2,19 +2,19 @@ package com.mvo.crud.controller;
 
 import com.mvo.crud.exception.CrudException;
 import com.mvo.crud.exception.NotExistCrudException;
-import com.mvo.crud.model.Lable;
+import com.mvo.crud.model.Label;
 import com.mvo.crud.service.LableService;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class LableControllerImp implements LableController {
+public class LabelControllerImp implements LabelController {
 
     private final LableService lableService;
 
     private final Scanner scanner;
 
-    public LableControllerImp(LableService lableService) {
+    public LabelControllerImp(LableService lableService) {
         this.lableService = lableService;
         this.scanner = new Scanner(System.in);
     }
@@ -24,8 +24,8 @@ public class LableControllerImp implements LableController {
         try {
             System.out.println("Enter name:");
             String name = scanner.nextLine();
-            Lable lable = lableService.createLable(name);
-            System.out.println("Lable has been created: " + lable);
+            Label label = lableService.createLable(name);
+            System.out.println("Lable has been created: " + label);
         } catch (CrudException e) {
             System.out.println("Creating error: " + e.getMessage());
         }
@@ -38,8 +38,8 @@ public class LableControllerImp implements LableController {
             System.out.println("Enter lable ID:");
             id = scanner.nextInt();
             scanner.nextLine();
-            Lable lable = lableService.getLableById(id);
-            System.out.println("Lable: " + lable);
+            Label label = lableService.getLableById(id);
+            System.out.println("Lable: " + label);
         } catch (NotExistCrudException e) {
             System.out.println("lable with " + id + " not found");
         } catch (CrudException e) {
@@ -50,9 +50,9 @@ public class LableControllerImp implements LableController {
     @Override
     public void getAllLables() {
         try {
-            List<Lable> lables = lableService.getAllLables();
-            for (Lable lable : lables) {
-                System.out.println(lable);
+            List<Label> labels = lableService.getAllLables();
+            for (Label label : labels) {
+                System.out.println(label);
             }
         } catch (CrudException e) {
             System.out.println("Getting lables error: " + e.getMessage());

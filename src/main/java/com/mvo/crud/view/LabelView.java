@@ -1,5 +1,5 @@
 package com.mvo.crud.view;
 
-public interface LableView {
+public interface LabelView {
     void runMenu();
 }

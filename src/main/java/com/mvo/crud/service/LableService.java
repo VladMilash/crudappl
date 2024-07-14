@@ -1,17 +1,17 @@
 package com.mvo.crud.service;
 
-import com.mvo.crud.model.Lable;
+import com.mvo.crud.model.Label;
 
 import java.util.List;
 
 public interface LableService {
-    Lable createLable(String name);
+    Label createLable(String name);
 
-    Lable getLableById(Integer id);
+    Label getLableById(Integer id);
 
-    List<Lable> getAllLables();
+    List<Label> getAllLables();
 
-    Lable updateLable(Integer id, String name);
+    Label updateLable(Integer id, String name);
 
     void deleteLableById(Integer id);
 }

@@ -2,15 +2,15 @@ package com.mvo.crud.model;
 
 import java.util.Objects;
 
-public class Lable {
+public class Label {
     private int id;
     private String name;
 
-    public Lable(String name) {
+    public Label(String name) {
         this.name = name;
     }
 
-    public Lable(int id, String name) {
+    public Label(int id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -43,8 +43,8 @@ public class Lable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Lable lable = (Lable) o;
-        return id == lable.id && Objects.equals(name, lable.name);
+        Label label = (Label) o;
+        return id == label.id && Objects.equals(name, label.name);
     }
 
     @Override

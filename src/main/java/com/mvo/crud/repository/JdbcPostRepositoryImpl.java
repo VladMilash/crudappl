@@ -1,7 +1,9 @@
 package com.mvo.crud.repository;
 
 import com.mvo.crud.exception.NotExistCrudException;
+import com.mvo.crud.mapper.LableMapper;
 import com.mvo.crud.mapper.PostMapper;
+import com.mvo.crud.model.Label;
 import com.mvo.crud.model.Post;
 import com.mvo.crud.repository.dbutil.SqlHelper;
 
@@ -82,4 +84,39 @@ public class JdbcPostRepositoryImpl implements PostRepository {
         });
     }
 
+    @Override
+    public List<Label> findAllLabelsByPostId(Integer postId) {
+        return sqlHelper.execute("SELECT l.* FROM Label l JOIN post_label pl ON l.id = pl.label_id WHERE pl.post_id = ?", pstm -> {
+            pstm.setInt(1, postId);
+            List<Label> labels = new ArrayList<>();
+            try (ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    labels.add(new LableMapper().map(rs));
+                }
+            }
+            return labels;
+        });
+    }
+
+    @Override
+    public void deleteAllLabelsByPostId(Integer postId) {
+        sqlHelper.execute("DELETE FROM post_label WHERE post_id = ?", pstm -> {
+            pstm.setInt(1, postId);
+            pstm.executeUpdate();
+            return null;
+        });
+    }
+
+    @Override
+    public void addLabelToPost(Integer postId, Integer labelId) {
+        sqlHelper.execute("INSERT INTO post_label (post_id, label_id) VALUES (?, ?)", pstm -> {
+            pstm.setInt(1, postId);
+            pstm.setInt(2, labelId);
+            int rowsAffected = pstm.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new NotExistCrudException(postId, labelId);
+            }
+            return null;
+        });
+    }
 }

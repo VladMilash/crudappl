@@ -1,6 +1,6 @@
 package com.mvo.crud.controller;
 
-public interface LableController {
+public interface LabelController {
     void createLable();
 
     void getLableById();

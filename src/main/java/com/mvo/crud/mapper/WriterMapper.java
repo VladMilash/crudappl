@@ -6,7 +6,6 @@ import com.mvo.crud.repository.WriterRepository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class WriterMapper implements Mapper <Writer> {

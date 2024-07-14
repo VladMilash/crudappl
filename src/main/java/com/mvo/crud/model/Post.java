@@ -9,10 +9,10 @@ public class Post {
     private String content;
     private LocalDate created;
     private LocalDate updated;
-    private List<Lable> labels;
+    private List<Label> labels;
     private PostStatus postStatus;
 
-    public Post(String content, LocalDate created, LocalDate updated, List<Lable> labels, PostStatus postStatus) {
+    public Post(String content, LocalDate created, LocalDate updated, List<Label> labels, PostStatus postStatus) {
         this.content = content;
         this.created = created;
         this.updated = updated;
@@ -20,7 +20,7 @@ public class Post {
         this.postStatus = postStatus;
     }
 
-    public Post(int id, String content, LocalDate created, LocalDate updated, List<Lable> labels, PostStatus postStatus) {
+    public Post(int id, String content, LocalDate created, LocalDate updated, List<Label> labels, PostStatus postStatus) {
         this.id = id;
         this.content = content;
         this.created = created;
@@ -67,11 +67,11 @@ public class Post {
         this.updated = updated;
     }
 
-    public List<Lable> getLabels() {
+    public List<Label> getLabels() {
         return labels;
     }
 
-    public void setLabels(List<Lable> labels) {
+    public void setLabels(List<Label> labels) {
         this.labels = labels;
     }
 

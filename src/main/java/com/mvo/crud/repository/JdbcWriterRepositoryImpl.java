@@ -83,12 +83,12 @@ public class JdbcWriterRepositoryImpl implements WriterRepository {
 
     @Override
     public List<Post> findAllPostsByWriterId(Integer writerId) {
-        return sqlHelper.execute("SELECT p.* FROM Post p JOIN Writer_Post wp ON p.id = wp.post_id WHERE wp.writer_id = ?", pstm -> {
+        return sqlHelper.execute("SELECT p.* FROM Post p JOIN writer_post wp ON p.id = wp.post_id WHERE wp.writer_id = ?", pstm -> {
             pstm.setInt(1, writerId);
             List<Post> posts = new ArrayList<>();
             try (ResultSet rs = pstm.executeQuery()) {
                 while (rs.next()) {
-                    posts.add(new PostMapper().map(rs));
+                    posts.add(new PostMapper(new JdbcPostRepositoryImpl()).map(rs));
                 }
             }
             return posts;
@@ -97,7 +97,7 @@ public class JdbcWriterRepositoryImpl implements WriterRepository {
 
     @Override
     public void deleteAllPostsByWriterId(Integer writerId) {
-        sqlHelper.execute("DELETE FROM Post WHERE id IN (SELECT post_id FROM Writer_Post WHERE writer_id = ?)", pstm -> {
+        sqlHelper.execute("DELETE FROM Post WHERE id IN (SELECT post_id FROM writer_post WHERE writer_id = ?)", pstm -> {
             pstm.setInt(1, writerId);
             pstm.executeUpdate();
             return null;
