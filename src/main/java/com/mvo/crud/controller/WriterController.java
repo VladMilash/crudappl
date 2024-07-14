@@ -11,5 +11,11 @@ public interface WriterController {
 
     void deleteWriterById();
 
+    void findAllPostsByWriterId();
+
+    void deleteAllPostsByWriterId();
+
+    void addPostToWriter();
+
     void closeScanner();
 }

@@ -2,6 +2,7 @@ package com.mvo.crud.service;
 
 import com.mvo.crud.exception.CrudException;
 import com.mvo.crud.exception.NotExistCrudException;
+import com.mvo.crud.model.Post;
 import com.mvo.crud.model.Writer;
 import com.mvo.crud.repository.WriterRepository;
 
@@ -18,4 +19,10 @@ public interface WriterService {
     Writer updateWriter(Integer id, String firstName, String lastName);
 
     void deleteWriterById(Integer id);
+
+    List<Post> findAllPostsByWriterId(Integer writerId);
+
+    void deleteAllPostsByWriterId(Integer writerId);
+
+    void addPostToWriter(Integer writerId, Integer postId);
 }

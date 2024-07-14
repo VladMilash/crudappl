@@ -1,7 +1,9 @@
 package com.mvo.crud.repository;
 
 import com.mvo.crud.exception.NotExistCrudException;
+import com.mvo.crud.mapper.PostMapper;
 import com.mvo.crud.mapper.WriterMapper;
+import com.mvo.crud.model.Post;
 import com.mvo.crud.model.Writer;
 import com.mvo.crud.repository.dbutil.SqlHelper;
 
@@ -12,7 +14,7 @@ import java.util.List;
 public class JdbcWriterRepositoryImpl implements WriterRepository {
 
     private final SqlHelper sqlHelper = new SqlHelper();
-    private final WriterMapper writerMapper = new WriterMapper();
+    private final WriterMapper writerMapper = new WriterMapper(this);
 
     @Override
     public Writer findById(Integer id) {
@@ -74,6 +76,42 @@ public class JdbcWriterRepositoryImpl implements WriterRepository {
             int rowsAffected = pstm.executeUpdate();
             if (rowsAffected == 0) {
                 throw new NotExistCrudException(id);
+            }
+            return null;
+        });
+    }
+
+    @Override
+    public List<Post> findAllPostsByWriterId(Integer writerId) {
+        return sqlHelper.execute("SELECT p.* FROM Post p JOIN Writer_Post wp ON p.id = wp.post_id WHERE wp.writer_id = ?", pstm -> {
+            pstm.setInt(1, writerId);
+            List<Post> posts = new ArrayList<>();
+            try (ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    posts.add(new PostMapper().map(rs));
+                }
+            }
+            return posts;
+        });
+    }
+
+    @Override
+    public void deleteAllPostsByWriterId(Integer writerId) {
+        sqlHelper.execute("DELETE FROM Post WHERE id IN (SELECT post_id FROM Writer_Post WHERE writer_id = ?)", pstm -> {
+            pstm.setInt(1, writerId);
+            pstm.executeUpdate();
+            return null;
+        });
+    }
+
+    @Override
+    public void addPostToWriter(Integer writerId, Integer postId) {
+        sqlHelper.execute("INSERT INTO Writer_Post (writer_id, post_id) VALUES (?, ?)", pstm -> {
+            pstm.setInt(1,writerId);
+            pstm.setInt(2,postId);
+            int rowsAffected = pstm.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new NotExistCrudException(writerId, postId);
             }
             return null;
         });

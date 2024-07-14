@@ -5,10 +5,6 @@ public class CrudException extends RuntimeException {
         super(message);
     }
 
-    public CrudException(String message, Exception e) {
-        super(message, e);
-    }
-
     public CrudException(Exception e) {
         super(e);
     }

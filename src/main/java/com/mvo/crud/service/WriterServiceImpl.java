@@ -2,6 +2,7 @@ package com.mvo.crud.service;
 
 import com.mvo.crud.exception.CrudException;
 import com.mvo.crud.exception.NotExistCrudException;
+import com.mvo.crud.model.Post;
 import com.mvo.crud.model.Writer;
 import com.mvo.crud.repository.WriterRepository;
 
@@ -42,5 +43,20 @@ public class WriterServiceImpl implements WriterService {
     @Override
     public void deleteWriterById(Integer id) {
         writerRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Post> findAllPostsByWriterId(Integer writerId) {
+        return writerRepository.findAllPostsByWriterId(writerId);
+    }
+
+    @Override
+    public void deleteAllPostsByWriterId(Integer writerId) {
+        writerRepository.deleteAllPostsByWriterId(writerId);
+    }
+
+    @Override
+    public void addPostToWriter(Integer writerId, Integer postId) {
+        writerRepository.addPostToWriter(writerId, postId);
     }
 }
