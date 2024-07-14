@@ -106,7 +106,7 @@ public class WriterControllerImpl implements WriterController {
             scanner.nextLine();
             List<Post> posts = writerService.findAllPostsByWriterId(id);
             for (Post post : posts) {
-                System.out.println(post);
+                System.out.println("Post: " + post);
             }
         } catch (CrudException e) {
             System.out.println("Finding error: " + e.getMessage());

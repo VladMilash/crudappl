@@ -23,8 +23,13 @@ public class WriterViewImpl implements WriterView {
                 System.out.println("-----Writers Menu-----");
                 System.out.println("1. Create Writer");
                 System.out.println("2. Get Writer by ID");
-                System.out.println("3. Get all Writers");
-                System.out.println("4. Exit");
+                System.out.println("3. Update Writer");
+                System.out.println("4. Delete Writer");
+                System.out.println("5. Get all Writers");
+                System.out.println("6. Find all posts by Writer");
+                System.out.println("7. Delete all posts by Writer");
+                System.out.println("8. Add post to Writer");
+                System.out.println("9. Exit");
                 System.out.print("Select an option: ");
                 int choiceNumber = scanner.nextInt();
                 scanner.nextLine();
@@ -34,9 +39,19 @@ public class WriterViewImpl implements WriterView {
 
                     case 2 -> writerController.getWriterById();
 
-                    case 3 -> writerController.getAllWriters();
+                    case 3 -> writerController.updateWriter();
 
-                    case 4 -> {
+                    case 4 -> writerController.deleteWriterById();
+
+                    case 5 -> writerController.getAllWriters();
+
+                    case 6-> writerController.findAllPostsByWriterId();
+
+                    case 7 -> writerController.deleteAllPostsByWriterId();
+
+                    case 8 -> writerController.addPostToWriter();
+
+                    case 9 -> {
                         System.out.println("Exiting...");
                         choice = "no";
                     }
