@@ -1,6 +1,5 @@
 package com.mvo.crud.repository.dbutil;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -10,19 +9,15 @@ import java.util.Properties;
 
 public class DatabaseConnection {
     private static DatabaseConnection instance;
-    private Connection connection;
+    private String url;
+    private String username;
+    private String password;
 
     private DatabaseConnection() {
         Properties properties = loadProperties();
-        String url = properties.getProperty("jdbc.url");
-        String username = properties.getProperty("jdbc.username");
-        String password = properties.getProperty("jdbc.password");
-
-        try {
-            connection = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error connecting to the database", e);
-        }
+        url = properties.getProperty("jdbc.url");
+        username = properties.getProperty("jdbc.username");
+        password = properties.getProperty("jdbc.password");
     }
 
     private static class InstanceHolder {
@@ -34,7 +29,11 @@ public class DatabaseConnection {
     }
 
     public Connection getConnection() {
-        return connection;
+        try {
+            return DriverManager.getConnection(url, username, password);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error connecting to the database", e);
+        }
     }
 
     private Properties loadProperties() {
@@ -44,7 +43,6 @@ public class DatabaseConnection {
                 throw new RuntimeException("Unable to find application.properties");
             }
             properties.load(input);
-
         } catch (IOException e) {
             throw new RuntimeException("Error loading properties file", e);
         }
