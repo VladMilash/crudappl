@@ -4,7 +4,7 @@ import com.mvo.crud.model.Label;
 
 import java.util.List;
 
-public interface LableService {
+public interface LabelService {
     Label createLable(String name);
 
     Label getLableById(Integer id);

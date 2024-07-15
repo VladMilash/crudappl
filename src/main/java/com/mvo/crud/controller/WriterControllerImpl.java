@@ -138,13 +138,12 @@ public class WriterControllerImpl implements WriterController {
             System.out.println("Enter post ID:");
             postId = scanner.nextInt();
             writerService.addPostToWriter(writerId, postId);
-            System.out.println("Added a post with an ID: " + postId + " to the author with an ID: " + writerId);
+            System.out.println("Added a post with an ID: " + postId + " to the writer with an ID: " + writerId);
         } catch (NotExistCrudException e) {
             System.out.println("No writer or post found with: " + " writer ID: " + writerId + " post ID " + postId);
         } catch (CrudException e) {
             System.out.println("Adding error: " + e.getMessage());
         }
-
     }
 
     @Override

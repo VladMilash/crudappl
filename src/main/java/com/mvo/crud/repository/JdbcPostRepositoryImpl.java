@@ -15,7 +15,7 @@ import java.util.List;
 public class JdbcPostRepositoryImpl implements PostRepository {
 
     private final SqlHelper sqlHelper = new SqlHelper();
-    private final PostMapper postMapper = new PostMapper();
+    private final PostMapper postMapper = new PostMapper(this);
 
     @Override
     public Post findById(Integer id) {

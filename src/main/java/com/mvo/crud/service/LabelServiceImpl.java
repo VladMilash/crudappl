@@ -5,11 +5,11 @@ import com.mvo.crud.repository.LabelRepository;
 
 import java.util.List;
 
-public class LableServiceImpl implements LableService {
+public class LabelServiceImpl implements LabelService {
 
     private final LabelRepository labelRepository;
 
-    public LableServiceImpl(LabelRepository labelRepository) {
+    public LabelServiceImpl(LabelRepository labelRepository) {
         this.labelRepository = labelRepository;
     }
 

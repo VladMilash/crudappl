@@ -5,28 +5,30 @@ import com.mvo.crud.repository.*;
 import com.mvo.crud.service.*;
 import com.mvo.crud.view.*;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        JdbcWriterRepositoryImpl jdbcWriterRepository = new JdbcWriterRepositoryImpl();
-        WriterService writerService = new WriterServiceImpl(jdbcWriterRepository);
+        Scanner scanner = new Scanner(System.in);
+        WriterRepository writerRepository = new JdbcWriterRepositoryImpl();
+        WriterService writerService = new WriterServiceImpl(writerRepository);
         WriterController writerController = new WriterControllerImpl(writerService);
-        WriterView writerView = new WriterViewImpl(writerController);
+        WriterViewImpl writerView = new WriterViewImpl(scanner, writerController);
 
-        writerView.runMenu();
-//
-//        PostRepository postRepository = new JdbcPostRepositoryImpl();
-//        PostService postService = new PostServiceImpl(postRepository);
-//        PostController postController = new PostControllerImp(postService);
-//        PostView postView = new PostViewImpl(postController);
-//
-//        postView.runMenu();
-//
-//        LableRepository lableRepository = new JdbcLableRepositoryImpl();
-//        LableService lableService = new LableServiceImpl(lableRepository);
-//        LableController lableController = new LableControllerImp(lableService);
-//        LableView lableView = new LableViewImpl(lableController);
-//
-//        lableView.runMenu();
+        PostRepository postRepository = new JdbcPostRepositoryImpl();
+        PostService postService = new PostServiceImpl(postRepository);
+        PostController postController = new PostControllerImp(postService);
+        PostViewImpl postView = new PostViewImpl(scanner, postController);
+
+        LabelRepository labelRepository = new JdbcLabelRepositoryImpl();
+        LabelService labelService = new LabelServiceImpl(labelRepository);
+        LabelController labelController = new LabelControllerImp(labelService);
+        LabelViewImpl labelView = new LabelViewImpl(scanner, labelController);
+
+        WorkingProcess workingProcess = new WorkingProcess(writerView,postView,labelView,scanner);
+
+        workingProcess.runWorkingProcess();
 
     }
 }
+

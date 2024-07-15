@@ -1,5 +1,6 @@
 package com.mvo.crud.service;
 
+import com.mvo.crud.model.Label;
 import com.mvo.crud.model.Post;
 import com.mvo.crud.model.PostStatus;
 
@@ -15,4 +16,10 @@ public interface PostService {
     Post updatePost(Integer id, PostStatus postStatus, String content);
 
     void deletePostById(Integer id);
+
+    List<Label> findAllLabelsByPostId(Integer postId);
+
+    void deleteAllLabelsByPostId(Integer postId);
+
+    void addLabelToPost(Integer postId, Integer labelId);
 }

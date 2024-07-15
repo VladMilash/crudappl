@@ -2,6 +2,7 @@ package com.mvo.crud.controller;
 
 import com.mvo.crud.exception.CrudException;
 import com.mvo.crud.exception.NotExistCrudException;
+import com.mvo.crud.model.Label;
 import com.mvo.crud.model.Post;
 import com.mvo.crud.model.PostStatus;
 import com.mvo.crud.service.PostService;
@@ -113,5 +114,55 @@ public class PostControllerImp implements PostController {
             }
         }
         return postStatus;
+    }
+
+    @Override
+    public void findAllLabelsByPostId() {
+        Integer id = null;
+        try {
+            System.out.println("Enter post ID:");
+            id = scanner.nextInt();
+            scanner.nextLine();
+            List<Label> labels = postService.findAllLabelsByPostId(id);
+            for (Label label : labels) {
+                System.out.println("Label: " + label);
+            }
+        } catch (CrudException e) {
+            System.out.println("Finding error: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void deleteAllLabelsByPostId() {
+        Integer id = null;
+        try {
+            System.out.println("Enter post ID:");
+            id = scanner.nextInt();
+            scanner.nextLine();
+            postService.deleteAllLabelsByPostId(id);
+            System.out.println("All labels for post with id:  " + id + " has been deleted");
+        } catch (CrudException e) {
+            System.out.println("Deleting error: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void addLabelToPost() {
+        Integer postId = null;
+        Integer labelId = null;
+        try {
+            System.out.println("Enter posts ID:");
+            postId = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println("Enter label ID:");
+            labelId = scanner.nextInt();
+            postService.addLabelToPost(postId, labelId);
+            System.out.println("Added a label with an ID: " + labelId + " to the post with an ID: " + postId);
+        } catch (NotExistCrudException e) {
+            System.out.println("No post or label found with: " + " post ID: " + postId + " label ID " + labelId);
+        } catch (CrudException e) {
+            System.out.println("Adding error: " + e.getMessage());
+        }
+
     }
 }

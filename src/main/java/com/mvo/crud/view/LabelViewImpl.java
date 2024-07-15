@@ -4,59 +4,45 @@ import com.mvo.crud.controller.LabelController;
 
 import java.util.Scanner;
 
-public class LabelViewImpl implements LabelView {
+public class LabelViewImpl extends BaseView {
     private final LabelController labelController;
-    private final Scanner scanner;
-    private String choice = "yes";
 
-    public LabelViewImpl(LabelController labelController) {
+
+    public LabelViewImpl(Scanner scanner, LabelController labelController) {
+        super(scanner);
         this.labelController = labelController;
-        this.scanner = new Scanner(System.in);
     }
 
     @Override
-    public void runMenu() {
-        try {
-            do {
-                System.out.println("-----Hello!-----");
-                System.out.println("-----Label Menu-----");
-                System.out.println("1. Create Label");
-                System.out.println("2. Get Label by ID");
-                System.out.println("3. Get all Label");
-                System.out.println("4. Exit");
-                System.out.print("Select an option: ");
-                int choiceNumber = scanner.nextInt();
-                scanner.nextLine();
+    public void closeControllerScanner() {
+        labelController.closeScanner();
+    }
 
-                switch (choiceNumber) {
-                    case 1 -> labelController.createLable();
+    @Override
+    protected void displayMenu() {
+        System.out.println("-----Hello!-----");
+        System.out.println("-----Labels Menu-----");
+        System.out.println("1. Create Label");
+        System.out.println("2. Get Lable by ID");
+        System.out.println("3. Get all Lables");
+        System.out.println("4. Exit");
+        System.out.print("Select an option: ");
+    }
 
-                    case 2 -> labelController.getLableById();
+    @Override
+    protected void handleChoice(int choiceNumber) {
+        switch (choiceNumber) {
+            case 1 -> labelController.createLable();
 
-                    case 3 -> labelController.getAllLables();
+            case 2 -> labelController.getLableById();
 
-                    case 4 -> {
-                        System.out.println("Exiting...");
-                        choice = "no";
-                    }
-                    default -> System.out.println("Invalid choice");
-                }
+            case 3 -> labelController.getAllLables();
 
-                if (!choice.equals("no")) {
-                    System.out.println("Do you want to continue? (Yes/No)");
-                    choice = scanner.nextLine().trim().toLowerCase();
-                    while (!choice.equals("yes") && !choice.equals("no")) {
-                        System.out.println("Invalid choice. Please try again. (Yes/No)");
-                        choice = scanner.nextLine().trim().toLowerCase();
-                    }
-                }
-
-            } while (!choice.equals("no"));
-            System.out.println("The program is completed, have a nice day");
-
-        } finally {
-            labelController.closeScanner();
-            scanner.close();
+            case 4 -> {
+                System.out.println("Exiting...");
+                setChoice("no");
+            }
+            default -> System.out.println("Invalid choice");
         }
     }
 }

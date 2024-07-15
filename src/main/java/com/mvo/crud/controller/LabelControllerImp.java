@@ -3,19 +3,19 @@ package com.mvo.crud.controller;
 import com.mvo.crud.exception.CrudException;
 import com.mvo.crud.exception.NotExistCrudException;
 import com.mvo.crud.model.Label;
-import com.mvo.crud.service.LableService;
+import com.mvo.crud.service.LabelService;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class LabelControllerImp implements LabelController {
 
-    private final LableService lableService;
+    private final LabelService labelService;
 
     private final Scanner scanner;
 
-    public LabelControllerImp(LableService lableService) {
-        this.lableService = lableService;
+    public LabelControllerImp(LabelService labelService) {
+        this.labelService = labelService;
         this.scanner = new Scanner(System.in);
     }
 
@@ -24,7 +24,7 @@ public class LabelControllerImp implements LabelController {
         try {
             System.out.println("Enter name:");
             String name = scanner.nextLine();
-            Label label = lableService.createLable(name);
+            Label label = labelService.createLable(name);
             System.out.println("Lable has been created: " + label);
         } catch (CrudException e) {
             System.out.println("Creating error: " + e.getMessage());
@@ -38,7 +38,7 @@ public class LabelControllerImp implements LabelController {
             System.out.println("Enter lable ID:");
             id = scanner.nextInt();
             scanner.nextLine();
-            Label label = lableService.getLableById(id);
+            Label label = labelService.getLableById(id);
             System.out.println("Lable: " + label);
         } catch (NotExistCrudException e) {
             System.out.println("lable with " + id + " not found");
@@ -50,7 +50,7 @@ public class LabelControllerImp implements LabelController {
     @Override
     public void getAllLables() {
         try {
-            List<Label> labels = lableService.getAllLables();
+            List<Label> labels = labelService.getAllLables();
             for (Label label : labels) {
                 System.out.println(label);
             }
@@ -68,7 +68,7 @@ public class LabelControllerImp implements LabelController {
             scanner.nextLine();
             System.out.println("Enter name:");
             String name = scanner.nextLine();
-            lableService.updateLable(id, name);
+            labelService.updateLable(id, name);
             System.out.println("Lable has been updated.");
         } catch (NotExistCrudException e) {
             System.out.println("Lable with " + id + " not found");
@@ -84,7 +84,7 @@ public class LabelControllerImp implements LabelController {
             System.out.println("Enter lable ID:");
             id = scanner.nextInt();
             scanner.nextLine();
-            lableService.deleteLableById(id);
+            labelService.deleteLableById(id);
             System.out.println("Lable with id:  " + id + "has been deleted");
         } catch (NotExistCrudException e) {
             System.out.println("Lable with " + id + " not found");
