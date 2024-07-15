@@ -3,13 +3,13 @@ package com.mvo.crud.view;
 import java.util.Scanner;
 
 public class WorkingProcess {
-    private final WriterViewImpl writerView;
-    private final PostViewImpl postView;
-    private final LabelViewImpl labelViewImpl;
+    private final BaseView writerView;
+    private final BaseView postView;
+    private final BaseView labelViewImpl;
     private final Scanner scanner;
     private String choice = "yes";
 
-    public WorkingProcess(WriterViewImpl writerView, PostViewImpl postView, LabelViewImpl labelViewImpl, Scanner scanner) {
+    public WorkingProcess(BaseView writerView, BaseView postView, BaseView labelViewImpl, Scanner scanner) {
         this.writerView = writerView;
         this.postView = postView;
         this.labelViewImpl = labelViewImpl;
