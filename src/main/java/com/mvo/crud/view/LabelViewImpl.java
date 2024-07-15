@@ -23,8 +23,8 @@ public class LabelViewImpl extends BaseView {
         System.out.println("-----Hello!-----");
         System.out.println("-----Labels Menu-----");
         System.out.println("1. Create Label");
-        System.out.println("2. Get Lable by ID");
-        System.out.println("3. Get all Lables");
+        System.out.println("2. Get Label by ID");
+        System.out.println("3. Get all Labels");
         System.out.println("4. Exit");
         System.out.print("Select an option: ");
     }

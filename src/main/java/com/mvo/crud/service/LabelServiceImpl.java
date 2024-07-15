@@ -14,30 +14,30 @@ public class LabelServiceImpl implements LabelService {
     }
 
     @Override
-    public Label createLable(String name) {
+    public Label createLabel(String name) {
         Label label = new Label(name);
         return labelRepository.save(label);
     }
 
     @Override
-    public Label getLableById(Integer id) {
+    public Label getLabelById(Integer id) {
         return labelRepository.findById(id);
     }
 
     @Override
-    public List<Label> getAllLables() {
+    public List<Label> getAllLabels() {
         return labelRepository.findAll();
     }
 
     @Override
-    public Label updateLable(Integer id, String name) {
+    public Label updateLabels(Integer id, String name) {
         Label updatedLabel = labelRepository.findById(id);
         updatedLabel.setName(name);
         return labelRepository.update(updatedLabel);
     }
 
     @Override
-    public void deleteLableById(Integer id) {
+    public void deleteLabelById(Integer id) {
         labelRepository.deleteById(id);
     }
 }

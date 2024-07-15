@@ -24,7 +24,7 @@ public class LabelControllerImp implements LabelController {
         try {
             System.out.println("Enter name:");
             String name = scanner.nextLine();
-            Label label = labelService.createLable(name);
+            Label label = labelService.createLabel(name);
             System.out.println("Lable has been created: " + label);
         } catch (CrudException e) {
             System.out.println("Creating error: " + e.getMessage());
@@ -38,7 +38,7 @@ public class LabelControllerImp implements LabelController {
             System.out.println("Enter lable ID:");
             id = scanner.nextInt();
             scanner.nextLine();
-            Label label = labelService.getLableById(id);
+            Label label = labelService.getLabelById(id);
             System.out.println("Lable: " + label);
         } catch (NotExistCrudException e) {
             System.out.println("lable with " + id + " not found");
@@ -50,7 +50,7 @@ public class LabelControllerImp implements LabelController {
     @Override
     public void getAllLables() {
         try {
-            List<Label> labels = labelService.getAllLables();
+            List<Label> labels = labelService.getAllLabels();
             for (Label label : labels) {
                 System.out.println(label);
             }
@@ -68,7 +68,7 @@ public class LabelControllerImp implements LabelController {
             scanner.nextLine();
             System.out.println("Enter name:");
             String name = scanner.nextLine();
-            labelService.updateLable(id, name);
+            labelService.updateLabels(id, name);
             System.out.println("Lable has been updated.");
         } catch (NotExistCrudException e) {
             System.out.println("Lable with " + id + " not found");
@@ -84,7 +84,7 @@ public class LabelControllerImp implements LabelController {
             System.out.println("Enter lable ID:");
             id = scanner.nextInt();
             scanner.nextLine();
-            labelService.deleteLableById(id);
+            labelService.deleteLabelById(id);
             System.out.println("Lable with id:  " + id + "has been deleted");
         } catch (NotExistCrudException e) {
             System.out.println("Lable with " + id + " not found");

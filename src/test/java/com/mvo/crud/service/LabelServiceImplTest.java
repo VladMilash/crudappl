@@ -34,27 +34,27 @@ public class LabelServiceImplTest {
     }
 
     @Test
-    public void createLable() {
+    public void createLabel() {
         when(labelRepository.save(any(Label.class))).thenReturn(testLabel);
-        Label createdLabel = labelService.createLable("Test");
+        Label createdLabel = labelService.createLabel("Test");
         assertEquals(testLabel, createdLabel);
         verify(labelRepository, times(1)).save(any(Label.class));
     }
 
     @Test
-    public void getLableById() {
+    public void getLabelById() {
         when(labelRepository.findById(any(Integer.class))).thenReturn(testLabel);
-        Label findingLabel = labelService.getLableById(1);
+        Label findingLabel = labelService.getLabelById(1);
         assertEquals(testLabel, findingLabel);
         verify(labelRepository, times(1)).findById(any(Integer.class));
     }
 
     @Test
-    public void getAllLables() {
+    public void getAllLabels() {
         List<Label> labels = new ArrayList<>();
         labels.add(testLabel);
         when(labelRepository.findAll()).thenReturn(labels);
-        List<Label> findinglabels = labelService.getAllLables();
+        List<Label> findinglabels = labelService.getAllLabels();
         assertEquals(1, findinglabels.size());
         assertEquals(labels, findinglabels);
         verify(labelRepository, times(1)).findAll();
@@ -64,7 +64,7 @@ public class LabelServiceImplTest {
     public void updateLabel() {
         when(labelRepository.findById(1)).thenReturn(testLabel);
         when(labelRepository.update(any(Label.class))).thenReturn(testLabel);
-        Label createdLabel = labelService.updateLable(1, "Test");
+        Label createdLabel = labelService.updateLabels(1, "Test");
         assertEquals(testLabel, createdLabel);
         verify(labelRepository, times(1)).update(any(Label.class));
         verify(labelRepository, times(1)).findById(1);
@@ -72,7 +72,7 @@ public class LabelServiceImplTest {
 
     @Test
     public void deleteLabelById() {
-        labelService.deleteLableById(1);
+        labelService.deleteLabelById(1);
         verify(labelRepository, times(1)).deleteById(1);
     }
 }

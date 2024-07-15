@@ -5,13 +5,13 @@ import com.mvo.crud.model.Label;
 import java.util.List;
 
 public interface LabelService {
-    Label createLable(String name);
+    Label createLabel(String name);
 
-    Label getLableById(Integer id);
+    Label getLabelById(Integer id);
 
-    List<Label> getAllLables();
+    List<Label> getAllLabels();
 
-    Label updateLable(Integer id, String name);
+    Label updateLabels(Integer id, String name);
 
-    void deleteLableById(Integer id);
+    void deleteLabelById(Integer id);
 }
