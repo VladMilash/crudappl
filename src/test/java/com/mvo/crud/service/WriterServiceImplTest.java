@@ -34,11 +34,9 @@ public class WriterServiceImplTest {
     public void setUp() {
         MockitoAnnotations.openMocks(this);
         writerService = new WriterServiceImpl(writerRepository);
-        testWriter = new Writer("Ivan", "Ivanov");
-        testWriter.setId(1);
+        testWriter = new Writer(1,"Ivan", "Ivanov", null);
 
-        post = new Post(PostStatus.ACTIVE, "Test");
-        post.setId(1);
+        post = new Post(1,"test",null, null,null,PostStatus.ACTIVE);
     }
 
     @Test
@@ -106,7 +104,6 @@ public class WriterServiceImplTest {
 
     @Test
     public void addPostToWriter() {
-        post.setId(1);
         writerService.addPostToWriter(1, 1);
         verify(writerRepository, times(1)).addPostToWriter(1, 1);
     }
