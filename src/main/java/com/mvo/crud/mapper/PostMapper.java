@@ -3,7 +3,6 @@ package com.mvo.crud.mapper;
 import com.mvo.crud.model.Label;
 import com.mvo.crud.model.Post;
 import com.mvo.crud.model.PostStatus;
-import com.mvo.crud.repository.JdbcPostRepositoryImpl;
 import com.mvo.crud.repository.PostRepository;
 
 import java.sql.ResultSet;

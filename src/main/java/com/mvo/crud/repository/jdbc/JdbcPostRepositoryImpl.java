@@ -1,14 +1,14 @@
-package com.mvo.crud.repository;
+package com.mvo.crud.repository.jdbc;
 
 import com.mvo.crud.exception.NotExistCrudException;
 import com.mvo.crud.mapper.LableMapper;
 import com.mvo.crud.mapper.PostMapper;
 import com.mvo.crud.model.Label;
 import com.mvo.crud.model.Post;
+import com.mvo.crud.repository.PostRepository;
 import com.mvo.crud.repository.dbutil.SqlHelper;
 
 import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

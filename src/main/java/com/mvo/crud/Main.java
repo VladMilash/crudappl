@@ -2,6 +2,9 @@ package com.mvo.crud;
 
 import com.mvo.crud.controller.*;
 import com.mvo.crud.repository.*;
+import com.mvo.crud.repository.jdbc.JdbcLabelRepositoryImpl;
+import com.mvo.crud.repository.jdbc.JdbcPostRepositoryImpl;
+import com.mvo.crud.repository.jdbc.JdbcWriterRepositoryImpl;
 import com.mvo.crud.service.*;
 import com.mvo.crud.view.*;
 

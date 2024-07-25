@@ -1,10 +1,11 @@
-package com.mvo.crud.repository;
+package com.mvo.crud.repository.jdbc;
 
 import com.mvo.crud.exception.NotExistCrudException;
 import com.mvo.crud.mapper.PostMapper;
 import com.mvo.crud.mapper.WriterMapper;
 import com.mvo.crud.model.Post;
 import com.mvo.crud.model.Writer;
+import com.mvo.crud.repository.WriterRepository;
 import com.mvo.crud.repository.dbutil.SqlHelper;
 
 import java.sql.*;
