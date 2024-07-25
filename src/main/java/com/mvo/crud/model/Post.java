@@ -1,16 +1,35 @@
 package com.mvo.crud.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "post")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String content;
     private LocalDate created;
     private LocalDate updated;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "post_label",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "label_id")
+    )
     private List<Label> labels;
     private PostStatus postStatus;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "writer_id")
+    private Writer writer;
+
+    public Post() {
+    }
 
     public Post(String content, LocalDate created, LocalDate updated, List<Label> labels, PostStatus postStatus) {
         this.content = content;

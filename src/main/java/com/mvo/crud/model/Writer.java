@@ -1,13 +1,23 @@
 package com.mvo.crud.model;
 
+import jakarta.persistence.*;
+
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "writers")
 public class Writer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String firstName;
     private String lastName;
+    @OneToMany(mappedBy = "writer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts;
+
+    public Writer() {
+    }
 
     public Writer(String firstName, String lastName, List<Post> posts) {
         this.firstName = firstName;

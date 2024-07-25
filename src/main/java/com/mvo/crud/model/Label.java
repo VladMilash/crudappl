@@ -1,10 +1,19 @@
 package com.mvo.crud.model;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
+@Table(name = "label")
 public class Label {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+
+    public Label() {
+    }
 
     public Label(String name) {
         this.name = name;
