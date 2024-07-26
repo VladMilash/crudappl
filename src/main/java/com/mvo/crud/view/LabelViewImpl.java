@@ -25,7 +25,8 @@ public class LabelViewImpl extends BaseView {
         System.out.println("1. Create Label");
         System.out.println("2. Get Label by ID");
         System.out.println("3. Get all Labels");
-        System.out.println("4. Exit");
+        System.out.println("4. Delete label by ID");
+        System.out.println("5. Exit");
         System.out.print("Select an option: ");
     }
 
@@ -38,7 +39,9 @@ public class LabelViewImpl extends BaseView {
 
             case 3 -> labelController.getAllLables();
 
-            case 4 -> {
+            case 4 -> labelController.deleteLableById();
+
+            case 5 -> {
                 System.out.println("Exiting...");
                 setChoice("no");
             }
