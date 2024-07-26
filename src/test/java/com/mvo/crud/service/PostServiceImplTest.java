@@ -34,7 +34,7 @@ public class PostServiceImplTest {
     public void setUp() {
         MockitoAnnotations.openMocks(this);
         postService = new PostServiceImpl(postRepository);
-        testPost = new Post(1, "test", null, null, null, PostStatus.ACTIVE);
+        testPost = new Post(1, "test", null, null, null, PostStatus.ACTIVE, null);
 
         label = new Label(1, "Test");
     }

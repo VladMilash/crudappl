@@ -20,7 +20,7 @@ public class HibernateHelper {
         }
     }
 
-    public <T> T executeWithOutTransaction(HibernateExecutor executor) {
+    public <T> T executeWithoutTransaction(HibernateExecutor executor) {
         Transaction transaction = null;
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             return (T) executor.execute(session);
