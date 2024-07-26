@@ -22,6 +22,9 @@ public class Post {
             inverseJoinColumns = @JoinColumn(name = "label_id")
     )
     private List<Label> labels;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
     private PostStatus postStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)

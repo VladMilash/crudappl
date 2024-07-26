@@ -12,8 +12,8 @@ CREATE TABLE "post"
     created    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status     VARCHAR(20) NOT NULL CHECK (status IN ('ACTIVE', 'UNDER_REVIEW', 'DELETED')),
-    writer_id  INT,  -- Добавлено поле для связи с Writer
-    CONSTRAINT fk_post_writer FOREIGN KEY (writer_id) REFERENCES writers (id) ON DELETE SET NULL  -- Удаление каскада
+    writer_id  INT,
+    CONSTRAINT fk_post_writer FOREIGN KEY (writer_id) REFERENCES writers (id) ON DELETE SET NULL
 );
 
 CREATE TABLE "label"
