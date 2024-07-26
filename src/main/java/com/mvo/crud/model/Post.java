@@ -31,6 +31,16 @@ public class Post {
     public Post() {
     }
 
+    public Post(int id, String content, LocalDate created, LocalDate updated, List<Label> labels, PostStatus postStatus, Writer writer) {
+        this.id = id;
+        this.content = content;
+        this.created = created;
+        this.updated = updated;
+        this.labels = labels;
+        this.postStatus = postStatus;
+        this.writer = writer;
+    }
+
     public Post(String content, LocalDate created, LocalDate updated, List<Label> labels, PostStatus postStatus) {
         this.content = content;
         this.created = created;
@@ -102,6 +112,14 @@ public class Post {
         this.postStatus = postStatus;
     }
 
+    public Writer getWriter() {
+        return writer;
+    }
+
+    public void setWriter(Writer writer) {
+        this.writer = writer;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -111,6 +129,7 @@ public class Post {
                 ", updated=" + updated +
                 ", labels=" + labels +
                 ", postStatus=" + postStatus +
+                ", writer=" + writer +
                 '}';
     }
 
@@ -119,11 +138,11 @@ public class Post {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Post post = (Post) o;
-        return id == post.id && Objects.equals(content, post.content) && Objects.equals(created, post.created) && Objects.equals(updated, post.updated) && Objects.equals(labels, post.labels) && postStatus == post.postStatus;
+        return id == post.id && Objects.equals(content, post.content) && Objects.equals(created, post.created) && Objects.equals(updated, post.updated) && Objects.equals(labels, post.labels) && postStatus == post.postStatus && writer == post.writer;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, content, created, updated, labels, postStatus);
+        return Objects.hash(id, content, created, updated, labels, postStatus, writer);
     }
 }
