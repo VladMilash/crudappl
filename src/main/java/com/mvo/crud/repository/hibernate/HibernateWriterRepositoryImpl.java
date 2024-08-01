@@ -62,10 +62,11 @@ public class HibernateWriterRepositoryImpl implements WriterRepository {
     @Override
     public Writer findById(Integer id) {
         return hibernateHelper.executeWithoutTransaction(session -> {
-            Writer writer = session.get(Writer.class, id);
-            if (writer != null) {
-                Hibernate.initialize(writer.getPosts());
-            } else {
+            String hql = "SELECT w FROM Writer w LEFT JOIN FETCH w.posts WHERE w.id = :id";
+            Writer writer = session.createQuery(hql, Writer.class)
+                    .setParameter("id", id)
+                    .uniqueResult();
+            if (writer == null) {
                 throw new NotExistCrudException(id);
             }
             return writer;
